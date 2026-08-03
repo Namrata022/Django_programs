@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+    <h2>Welcome to Student Management System</h2>
+
+    <img src="{% static 'images/uniLogo.jpg' %}" height="200px" width="250px">
+    <p>This page inherits the header,Navbar,Sidebar and Footer from <b>base.html</b></p>
+
+    <button class="btn_custom" onClick="ShowMessage();">Demo static</button>
+
+    <h3><b>Injecting data to temple from views</b></h3>
+    <p>Name:{{data.name}}</p>
+    <p>Course:{{data.course}}</p>
+    <p>College:{{data.college}}</p>
+
+    <p>List of course</p>
+    <ul>
+        {% for subject in subject_list %}
+        
+        <li>{{subject}}</li>
+        
+        {% if subject == 'Django' %}
+        <span style="color: red;">Intersting subject</span>
+        {% endif %}
+        
+        {% endfor %}
+    </ul>
+    <h2>Student Marks</h2>
+    {% if Marks >= 75 %}
+        <p style="color: green;">Distinction</p>
+    {% elif Marks >= 60 %}
+        <p style="color: green;">First Class</p>
+    {% elif Marks >= 35 %}
+        <p style="color: green;">pass</p>
+    {% else %}
+        <p style="color: red;">Fail</p>
+    {% endif %}
+
+{% endblock%}
