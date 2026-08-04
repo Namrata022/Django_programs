@@ -37,6 +37,35 @@ def student_list(request):
     students = student.objects.all()
     return render(request, 'student_crud/list.html', {'students': students})
 
+# def student_add(request):
+#     if request.method == 'POST':
+#         # name = request.POST.get('name')
+#         # email = request.POST.get('email')
+#         # mobile = request.POST.get('mobile')
+#         # city = request.POST.get('city')
+        
+#         student.objects.create(
+#             name=request.POST ['name'],
+#             email=request.POST ['email'], 
+#             mobile=request.POST ['mobile'], 
+#             city=request.POST ['city'],)
+#         return redirect('student_list')
+        
+#     return render(request, 'student_crud/add.html')
+
+# # --- UPDATE: Edit  an existing student ---
+# def student_edit(request, pk):
+#     stud = get_object_or_404(student, pk=pk)
+    
+#     if request.method == 'POST':
+#         stud.name = request.POST.get('name')
+#         stud.email = request.POST.get('email')
+#         stud.mobile = request.POST.get('mobile')
+#         stud.city = request.POST.get('city')
+#         stud.save()
+#         return redirect('student_list')
+        
+#     return render(request, 'student_crud/edit.html', {'student': stud})
 
 def student_create(request):
     if request.method == 'POST':
@@ -56,10 +85,9 @@ def student_edit(request, id):
         if form.is_valid():
             form.save()
             return redirect('student')
-    else:
+    else: 
         form = StudentForm(instance=student_obj)
     return render(request, 'student_crud/edit.html', {'form': form, 'title': 'Edit Student'})
-
 
 
 def student_delete(request, id):
