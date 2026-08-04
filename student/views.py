@@ -1,12 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
 from .models import student, Attendance
-
-
-class StudentForm(forms.ModelForm):
-    class Meta:
-        model = student
-        fields = ['name', 'email', 'mobile', 'city']
+from .forms import StudentForm
 
 
 # def home(request):
