@@ -11,4 +11,9 @@ urlpatterns = [
     path('student/<int:id>/edit/', views.student_edit, name='student_edit'),
     path('student/<int:id>/delete/', views.student_delete, name='student_delete'),
     path('Attendance/', views.AttendanceView, name='Attendance'),
+
+    path('Course/list/', views.courseListView.as_view(), name='Course_list'),
+    path('Course/add/', views.courseCreateView.as_view(), name='Course_add'),
+
+    path('dept/list/',views.dept_list,name='dept_list'),
 ]

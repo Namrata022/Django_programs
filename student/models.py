@@ -43,3 +43,13 @@ class Attendance(models.Model):
     )
     def __str__(self):
         return f"{self.student} - {self.date}"
+
+class dept(models.Model):
+
+    department_name=models.CharField(max_length=100)
+    HOD_name=models.CharField(max_length=100)
+    supervisor_name=models.CharField(max_length=100)
+    code=models.IntegerField()
+
+    def __str__(self):
+        return self.department_name

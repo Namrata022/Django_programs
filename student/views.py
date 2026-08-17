@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
-from .models import student, Attendance
-from .forms import StudentForm
+from .models import Course, dept, student, Attendance
+from .forms import StudentForm,CourseForm
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 
 # def home(request):
@@ -94,3 +96,19 @@ def student_delete(request, id):
 def AttendanceView(request):
     attendance_list = Attendance.objects.all()
     return render(request, 'student_crud/attendance.html', {'attendences': attendance_list})
+
+def dept_list(request):
+    departments = dept.objects.all()
+    return render(request, 'dept/list.html', {'departments': departments})
+
+#course View
+class courseCreateView(CreateView):
+    model=Course
+    form_class=CourseForm
+    template_name='course_crud/course_form.html'
+    success_url=reverse_lazy('Course_list')
+
+class courseListView(ListView):
+    model=Course
+    template_name='course_crud/course_list.html'
+    context_object_name='courses'
