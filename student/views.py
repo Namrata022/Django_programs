@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.http import JsonResponse
 
 # def home(request):
 #     return HttpResponse("<h1 style='color:blue;'>Welcome to Django</h1>")
@@ -110,7 +110,7 @@ class courseCreateView(LoginRequiredMixin,CreateView):
     model=Course
     form_class=CourseForm
     template_name='course_crud/course_form.html'
-    success_url=reverse_lazy('Course_list')
+    success_url=reverse_lazy('course_list')
 
 class courseListView(LoginRequiredMixin,ListView):
     model=Course
@@ -121,12 +121,12 @@ class courseUpdateView(LoginRequiredMixin,UpdateView):
     model=Course
     fields='__all__'
     template_name='course_crud/course_form.html'
-    success_url=reverse_lazy('Course_list')
+    success_url=reverse_lazy('course_list')
 
 class courseDeleteView(LoginRequiredMixin,DeleteView):
     model=Course
     template_name='course_crud/course_confirm_delete.html'
-    success_url=reverse_lazy('Course_list')
+    success_url=reverse_lazy('course_list')
 
 class courseDetailView(LoginRequiredMixin,DetailView):
     model=Course
@@ -156,3 +156,7 @@ def logout_view(request):
     logout(request)
     request.session.flush()
     return redirect('login')
+
+def ajax_demo(request):
+    name=request.GET.get("name","")
+    return JsonResponse({"message": f"Hello {name}, AJAX is working!"})

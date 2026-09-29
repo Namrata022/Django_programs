@@ -23,4 +23,6 @@ urlpatterns = [
 
     path('login/',views.login_view,name='login'),
     path('logout/',views.logout_view,name='logout'),
+
+    path('demo/',views.ajax_demo,name="demo"),
 ]
